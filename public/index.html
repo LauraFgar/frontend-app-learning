@@ -12,6 +12,50 @@
   </head>
   <body>
     <div id="root"></div>
-    <script src="https://develop.graspway.com/app/edx_integration.js" type="module"></script>
+    <!-- <script src="https://develop.graspway.com/app/edx_integration.js" type="module"></script> -->
+    <script type="text/javascript">
+    /**
+      * User Activity And Ratting
+      */
+    function  graspway_rating_init( block_id ) {
+      console.log('entra', block_id)
+      if (!block_id) { return ;}
+      var course_id = 'course-v1:' + block_id.match(/(^block\-v1\:)(.*)\+type\@(.*)(@)(.*)/i)[2];
+      var block_uuid = block_id.match(/(^block\-v1\:)(.*)\+type\@(.*)(@)(.*)/i)[5];
+    
+      /**
+        * Performs a visit log from the user to the course block.
+        * Optional callback.
+        */
+      function visit(course_id, block_id, callback) {
+        var url = "/os-api/v1/courses/course/" + course_id + "/block/" + block_id + "/visit"
+        console.log('entra2', url)
+    
+        $.get(url, (response, status) => {
+          console.log('entra3', response, status)
+          if (status === 'success' && response.error == false && callback) {
+            callback(response.value);
+          }
+        });
+      }
+    
+      // register visit
+      visit(course_id, block_id, function (ratting_status) {
+        // register visit
+        console.log('entra4', course_id, block_id)
+      });
+    
+    }
+    
+      
+    </script>
+    <script type="text/javascript">
+        "${block_id}";
+        (function() {
+            console.log('OKOK')
+            console.log('${block_id}')
+            graspway_rating_init( '${block_id}') ;
+        })();
+    </script>
   </body>
 </html>
