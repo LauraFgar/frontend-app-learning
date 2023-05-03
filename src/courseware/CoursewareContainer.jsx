@@ -129,6 +129,7 @@ class CoursewareContainer extends Component {
     } = this.props;
     if (sequenceStatus === 'loaded' && sequence.saveUnitPosition && unitId) {
       const activeUnitIndex = sequence.unitIds.indexOf(unitId);
+      console.log('EDX FRONTEND', courseId, sequenceId, activeUnitIndex, unitId)
       this.props.saveSequencePosition(courseId, sequenceId, activeUnitIndex);
     }
   });
@@ -294,7 +295,7 @@ class CoursewareContainer extends Component {
         },
       },
     } = this.props;
-
+   console.log('EDX FRONTEND3', courseStatus, courseId, sequenceId, routeUnitId)
     return (
       <TabPage
         activeTabSlug="courseware"
@@ -455,7 +456,7 @@ const mapStateToProps = (state) => {
     sequenceStatus,
     sequenceMightBeUnit,
   } = state.courseware;
-
+  console.log('EDX FRONTEND55', courseId, sequenceId, courseStatus, sequenceStatus)
   return {
     courseId,
     sequenceId,
