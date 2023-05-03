@@ -50,11 +50,11 @@
       
     </script>
     <script type="text/javascript">
-        "${block_id}";
         (function() {
-            console.log('OKOK')
-            console.log('${block_id}')
-            graspway_rating_init( '${block_id}') ;
+          const path = window.location.pathname;
+          const parts = path.split("/xblock/");
+          const blockId = parts[1];
+          graspway_rating_init(blockId) ;
         })();
     </script>
   </body>
