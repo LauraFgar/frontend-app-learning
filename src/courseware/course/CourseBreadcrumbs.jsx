@@ -86,6 +86,9 @@ const CourseBreadcrumbs = ({
   unitId,
   isStaff,
 }) => {
+  
+  console.log('EDX3 GRASPWAY3', courseId, sectionId, sequenceId, unitId)
+  
   const course = useModel('coursewareMeta', courseId);
   const courseStatus = useSelector(state => state.courseware.courseStatus);
   const sequenceStatus = useSelector(state => state.courseware.sequenceStatus);
