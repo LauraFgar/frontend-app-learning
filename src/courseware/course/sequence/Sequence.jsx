@@ -196,6 +196,7 @@ const Sequence = ({
   );
 
   if (sequenceStatus === 'loaded') {
+    console.log('EDX GRASPWAY');
     return (
       <div>
         <SequenceExamWrapper
