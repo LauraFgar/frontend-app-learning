@@ -12,14 +12,44 @@
   </head>
   <body>
     <div id="root"></div>
-    <script src="https://develop.graspway.com/app/edx_integration.js" type="module"></script>
     <script type="text/javascript">
-        (function() {
-          const path = window.location.pathname;
-          const parts = path.split("/");
-          const blockId = parts[parts.length - 1];
-          graspway_rating_init(blockId);
-        })();
+
+      const path = window.location.pathname;
+      const parts = path.split("/");
+      const blockId = parts[parts.length - 1];
+      graspway_rating_init(blockId);
+
+      /**
+      * User Activity And Ratting
+      */
+      function  graspway_rating_init( block_id ) {
+        console.log('entra', block_id)
+        if (!block_id) { return ;}
+        var course_id = 'course-v1:' + block_id.match(/(^block\-v1\:)(.*)\+type\@(.*)(@)(.*)/i)[2];
+      
+        /**
+          * Performs a visit log from the user to the course block.
+          * Optional callback.
+          */
+        function visit(course_id, block_id, callback) {
+          const url = "/os-api/v1/courses/course/" + course_id + "/block/" + block_id + "/visit"
+          console.log('entra2', url)
+      
+          fetch(url)
+          .then(response => {
+            console.log('response1', response)
+            if (!response.ok) {
+              throw new Error('Network response was not success.');
+            }
+          })
+          .then(data => {
+            console.log('data', data);
+          })
+          .catch(error => {
+            console.error('There was a problem with the fetch operation:', error);
+          });
+        }
+      }
     </script>
   </body>
 </html>
