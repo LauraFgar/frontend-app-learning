@@ -27,6 +27,11 @@ const Course = ({
   unitNavigationHandler,
   windowWidth,
 }) => {
+  
+    console.log('EDX2 GRASPWAY2', courseId, sequenceId, unitId);
+
+  
+  
   const course = useModel('coursewareMeta', courseId);
   const {
     celebrations,
