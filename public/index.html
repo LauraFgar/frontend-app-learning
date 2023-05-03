@@ -52,9 +52,9 @@
     <script type="text/javascript">
         (function() {
           const path = window.location.pathname;
-          const parts = path.split("/xblock/");
-          const blockId = parts[1];
-          graspway_rating_init(blockId) ;
+          const parts = path.split("/");
+          const blockId = parts[parts.length - 1];
+          graspway_rating_init(blockId);
         })();
     </script>
   </body>
