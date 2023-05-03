@@ -28,7 +28,7 @@ const Course = ({
   windowWidth,
 }) => {
   
-    console.log('EDX2 GRASPWAY2', courseId, sequenceId, unitId);
+ console.log('EDX2 GRASPWAY2', courseId, sequenceId, unitId);
 
   
   
