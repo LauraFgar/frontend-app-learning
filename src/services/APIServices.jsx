@@ -1,4 +1,9 @@
 class APIService {
+    
+    constructor() {
+    
+    }
+    
     visit = async (course_id, block_id) => {
         const url = "/os-api/v1/courses/course/" + course_id + "/block/" + block_id + "/visit"
         console.log('url', url)
