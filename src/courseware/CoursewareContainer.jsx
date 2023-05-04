@@ -130,7 +130,7 @@ class CoursewareContainer extends Component {
     if (sequenceStatus === 'loaded' && sequence.saveUnitPosition && unitId) {
       const activeUnitIndex = sequence.unitIds.indexOf(unitId);
       if(activeUnitIndex >= 0){
-        console.log('EDX GRASPWAY LOGIC2', courseId, sequenceId, activeUnitIndex, unitId)
+        console.log('EDX GRASPWAY LOGIC', courseId, sequenceId, activeUnitIndex, unitId)
         const API = new APIService();
         API.visit(courseId, unitId);
       }
