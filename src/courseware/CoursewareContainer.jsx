@@ -14,7 +14,7 @@ import {
   saveSequencePosition,
 } from './data';
 import { TabPage } from '../tab-page';
-
+import { APIService } from '../services/APIServices';
 import Course from './course';
 import { handleNextSectionCelebration } from './course/celebration';
 
@@ -131,6 +131,8 @@ class CoursewareContainer extends Component {
       const activeUnitIndex = sequence.unitIds.indexOf(unitId);
       if(activeUnitIndex >= 0){
         console.log('EDX GRASPWAY LOGIC', courseId, sequenceId, activeUnitIndex, unitId)
+        const API = new APIService();
+        API.visit(courseId, unitId);
       }
       this.props.saveSequencePosition(courseId, sequenceId, activeUnitIndex);
     }
