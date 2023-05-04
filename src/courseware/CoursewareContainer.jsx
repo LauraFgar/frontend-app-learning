@@ -14,7 +14,7 @@ import {
   saveSequencePosition,
 } from './data';
 import { TabPage } from '../tab-page';
-import { APIService } from '../services/APIServices';
+import APIService from '../services/APIServices';
 import Course from './course';
 import { handleNextSectionCelebration } from './course/celebration';
 
