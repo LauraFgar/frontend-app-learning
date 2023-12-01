@@ -12,7 +12,7 @@
     console.log('entra', block_id)
     if (!block_id) { return ;}
     const course_id = 'course-v1:' + block_id.match(/(^block\-v1\:)(.*)\+type\@(.*)(@)(.*)/i)[2];
-    const url = "/os-api/v1/courses/course/" + course_id + "/block/" + block_id + "/visit"
+    const url = "/api/v1/courses/course/" + course_id + "/block/" + block_id + "/visit"
 
     fetch(url)
     .then(response => {

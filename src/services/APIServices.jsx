@@ -1,7 +1,7 @@
 class APIService {
     visit = async (course_id, block_id) => {
-        const url = "/os-api/v1/courses/course/" + course_id + "/block/" + block_id + "/visit"
-        fetch(url)
+        const URL = "/api/v1/courses/course/" + course_id + "/block/" + block_id + "/visit"
+        fetch( process.env.BASE_URL_EDX + URL)
         .then(response => {
             if (!response.ok) {
                 throw new Error('Network response was not success.');
