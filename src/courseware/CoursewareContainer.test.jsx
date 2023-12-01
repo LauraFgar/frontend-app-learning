@@ -5,13 +5,16 @@ import { waitForElementToBeRemoved, fireEvent } from '@testing-library/dom';
 import '@testing-library/jest-dom/extend-expect';
 import { render, screen } from '@testing-library/react';
 import React from 'react';
-import { Route, Switch } from 'react-router';
+import {
+  BrowserRouter, MemoryRouter, Route, Routes,
+} from 'react-router-dom';
 import { Factory } from 'rosie';
 import MockAdapter from 'axios-mock-adapter';
 
 import { UserMessagesProvider } from '../generic/user-messages';
 import tabMessages from '../tab-page/messages';
-import { initializeMockApp } from '../setupTest';
+import { initializeMockApp, waitFor } from '../setupTest';
+import { DECODE_ROUTES } from '../constants';
 
 import CoursewareContainer from './CoursewareContainer';
 import { buildSimpleCourseBlocks, buildBinaryCourseBlocks } from '../shared/data/__factories__/courseBlocks.factory';
@@ -80,18 +83,16 @@ describe('CoursewareContainer', () => {
     store = initializeStore();
 
     component = (
-      <AppProvider store={store}>
+      <AppProvider store={store} wrapWithRouter={false}>
         <UserMessagesProvider>
-          <Switch>
-            <Route
-              path={[
-                '/course/:courseId/:sequenceId/:unitId',
-                '/course/:courseId/:sequenceId',
-                '/course/:courseId',
-              ]}
-              component={CoursewareContainer}
-            />
-          </Switch>
+          <Routes>
+            {DECODE_ROUTES.COURSEWARE.map((route) => (
+              <Route
+                path={route}
+                element={<CoursewareContainer />}
+              />
+            ))}
+          </Routes>
         </UserMessagesProvider>
       </AppProvider>
     );
@@ -151,7 +152,7 @@ describe('CoursewareContainer', () => {
   }
 
   async function loadContainer() {
-    const { container } = render(component);
+    const { container } = render(<BrowserRouter>{component}</BrowserRouter>);
     // Wait for the page spinner to be removed, such that we can wait for our main
     // content to load before making any assertions.
     await waitForElementToBeRemoved(screen.getByRole('status'));
@@ -160,7 +161,7 @@ describe('CoursewareContainer', () => {
 
   it('should initialize to show a spinner', () => {
     history.push('/course/abc123');
-    render(component);
+    render(<MemoryRouter initialEntries={['/course/abc123']}>{component}</MemoryRouter>);
 
     const spinner = screen.getByRole('status');
 
@@ -185,7 +186,7 @@ describe('CoursewareContainer', () => {
 
     function assertSequenceNavigation(container, expectedUnitCount = 3) {
       // Ensure we had appropriate sequence navigation buttons.  We should only have one unit.
-      const sequenceNavButtons = container.querySelectorAll('nav.sequence-navigation button');
+      const sequenceNavButtons = container.querySelectorAll('nav.sequence-navigation a, nav.sequence-navigation button');
       expect(sequenceNavButtons).toHaveLength(expectedUnitCount + 2);
 
       expect(sequenceNavButtons[0]).toHaveTextContent('Previous');
@@ -211,7 +212,7 @@ describe('CoursewareContainer', () => {
         });
 
         history.push(`/course/${courseId}`);
-        const container = await loadContainer();
+        const container = await waitFor(() => loadContainer());
 
         assertLoadedHeader(container);
         assertSequenceNavigation(container);
@@ -234,7 +235,7 @@ describe('CoursewareContainer', () => {
         axiosMock.onGet(`${getConfig().LMS_BASE_URL}/api/courseware/resume/${courseId}`).reply(200, {});
 
         history.push(`/course/${courseId}`);
-        const container = await loadContainer();
+        const container = await waitFor(() => loadContainer());
 
         assertLoadedHeader(container);
         assertSequenceNavigation(container);
@@ -284,7 +285,7 @@ describe('CoursewareContainer', () => {
       describe('when the URL does not contain a unit ID', () => {
         it('should choose a unit within the section\'s first sequence', async () => {
           setUrl(sectionTree[1].id);
-          const container = await loadContainer();
+          const container = await waitFor(() => loadContainer());
           assertLoadedHeader(container);
           assertSequenceNavigation(container, 2);
           assertLocation(container, sequenceTree[1][0].id, unitTree[1][0][0].id);
@@ -359,7 +360,7 @@ describe('CoursewareContainer', () => {
 
       it('should pick the first unit if position was not defined (activeUnitIndex becomes 0)', async () => {
         history.push(`/course/${courseId}/${sequenceBlock.id}`);
-        const container = await loadContainer();
+        const container = await waitFor(() => loadContainer());
 
         assertLoadedHeader(container);
         assertSequenceNavigation(container);
@@ -378,7 +379,7 @@ describe('CoursewareContainer', () => {
         setUpMockRequests({ sequenceMetadatas: [sequenceMetadata] });
 
         history.push(`/course/${courseId}/${sequenceBlock.id}`);
-        const container = await loadContainer();
+        const container = await waitFor(() => loadContainer());
 
         assertLoadedHeader(container);
         assertSequenceNavigation(container);
@@ -395,7 +396,7 @@ describe('CoursewareContainer', () => {
 
       it('should load the specified unit', async () => {
         history.push(`/course/${courseId}/${sequenceBlock.id}/${unitBlocks[2].id}`);
-        const container = await loadContainer();
+        const container = await waitFor(() => loadContainer());
 
         assertLoadedHeader(container);
         assertSequenceNavigation(container);
@@ -411,12 +412,12 @@ describe('CoursewareContainer', () => {
         });
 
         history.push(`/course/${courseId}/${sequenceBlock.id}/${unitBlocks[0].id}`);
-        const container = await loadContainer();
+        const container = await waitFor(() => loadContainer());
 
-        const sequenceNavButtons = container.querySelectorAll('nav.sequence-navigation button');
+        const sequenceNavButtons = container.querySelectorAll('nav.sequence-navigation a, nav.sequence-navigation button');
         const sequenceNextButton = sequenceNavButtons[4];
         expect(sequenceNextButton).toHaveTextContent('Next');
-        fireEvent.click(sequenceNavButtons[4]);
+        fireEvent.click(sequenceNextButton);
 
         expect(global.location.href).toEqual(`http://localhost/course/${courseId}/${sequenceBlock.id}/${unitBlocks[1].id}`);
       });

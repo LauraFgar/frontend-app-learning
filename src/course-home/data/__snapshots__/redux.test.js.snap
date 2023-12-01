@@ -6,6 +6,7 @@ Object {
     "courseId": "course-v1:edX+DemoX+Demo_Course",
     "courseStatus": "loaded",
     "proctoringPanelStatus": "loading",
+    "showSearch": false,
     "targetUserId": undefined,
     "toastBodyLink": null,
     "toastBodyText": null,
@@ -17,6 +18,9 @@ Object {
     "sequenceId": null,
     "sequenceMightBeUnit": false,
     "sequenceStatus": "loading",
+  },
+  "learningAssistant": ObjectContaining {
+    "conversationId": Any<String>,
   },
   "models": Object {
     "courseHomeMeta": Object {
@@ -324,6 +328,7 @@ Object {
     "courseId": "course-v1:edX+DemoX+Demo_Course",
     "courseStatus": "loaded",
     "proctoringPanelStatus": "loading",
+    "showSearch": false,
     "targetUserId": undefined,
     "toastBodyLink": null,
     "toastBodyText": null,
@@ -335,6 +340,9 @@ Object {
     "sequenceId": null,
     "sequenceMightBeUnit": false,
     "sequenceStatus": "loading",
+  },
+  "learningAssistant": ObjectContaining {
+    "conversationId": Any<String>,
   },
   "models": Object {
     "courseHomeMeta": Object {
@@ -520,6 +528,7 @@ Object {
     "courseId": "course-v1:edX+DemoX+Demo_Course",
     "courseStatus": "loaded",
     "proctoringPanelStatus": "loading",
+    "showSearch": false,
     "targetUserId": undefined,
     "toastBodyLink": null,
     "toastBodyText": null,
@@ -531,6 +540,9 @@ Object {
     "sequenceId": null,
     "sequenceMightBeUnit": false,
     "sequenceStatus": "loading",
+  },
+  "learningAssistant": ObjectContaining {
+    "conversationId": Any<String>,
   },
   "models": Object {
     "courseHomeMeta": Object {
