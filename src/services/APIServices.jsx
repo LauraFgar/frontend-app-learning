@@ -1,16 +1,16 @@
-import Cookies from 'js-cookie';
 import { getConfig } from '@edx/frontend-platform';
+import { getAuthenticatedUser } from '@edx/frontend-platform/auth';
+
 class APIService {
     visit = async (course_id, block_id) => {
-        const URL = `/api/v1/courses/course/${course_id}/block/${block_id}/visit`;
-        const lmsSessionIdCookie = Cookies.get('lms_sessionid');
-        console.log('COOKIESSS', lmsSessionIdCookie)
+        const { userId } = getAuthenticatedUser();
+        const URL = `/api/v1/courses/user/${userId}/course/${course_id}/block/${block_id}/visit`;
+
+        console.log('USER_ID', userId)
         try {
+
             const response = await fetch(getConfig().API_GW_URL + URL, {
-                method: 'GET',
-                headers: {
-                    'Cookie': `lms_sessionid=${lmsSessionIdCookie}`,
-                },
+                method: 'GET'
             });
 
             console.log('response', response);
