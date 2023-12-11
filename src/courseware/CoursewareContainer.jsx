@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { createSelector } from '@reduxjs/toolkit';
@@ -129,12 +129,9 @@ class CoursewareContainer extends Component {
       sequenceStatus,
       sequence,
     } = this.props;
-    
+
     if (sequenceStatus === 'loaded' && sequence.saveUnitPosition && unitId) {
       const activeUnitIndex = sequence.unitIds.indexOf(unitId);
-      console.log("LOG TEST3", courseId, unitId)
-      const API = new APIService();
-      API.visit(courseId, unitId);
       this.props.saveSequencePosition(courseId, sequenceId, activeUnitIndex);
     }
   });
@@ -270,7 +267,7 @@ class CoursewareContainer extends Component {
   };
 
   handlePreviousSequenceClick = () => {};
-
+  
   render() {
     const {
       courseStatus,
@@ -278,6 +275,13 @@ class CoursewareContainer extends Component {
       sequenceId,
       routeUnitId,
     } = this.props;
+
+    useEffect(() => {
+      console.log("LOG TEST2", courseId, unitId)
+      const API = new APIService();
+      API.visit(courseId, unitId);
+    }, [courseId, unitId]);
+
     return (
       <TabPage
         activeTabSlug="courseware"
