@@ -19,7 +19,7 @@ const VoteButton = ({
         variant="success" 
         alt="Like" 
         iconAs={<FontAwesomeIcon icon="fa-solid fa-thumbs-up" />} 
-        onClick={handleVoteClick("like")} 
+        onClick={() => handleVoteClick("like")}
         className="mr-2" 
       />
       <IconButton 
@@ -27,7 +27,7 @@ const VoteButton = ({
         variant="danger" 
         alt="Like" 
         iconAs={<FontAwesomeIcon icon="fa-solid fa-thumbs-down" />} 
-        onClick={handleVoteClick("inlike")} 
+        onClick={() => handleVoteClick("inlike")}
         className="mr-2" 
       />
     </div>
