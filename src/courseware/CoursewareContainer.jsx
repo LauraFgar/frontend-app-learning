@@ -1,4 +1,4 @@
-import React, { Component, useEffect } from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { createSelector } from '@reduxjs/toolkit';
@@ -130,14 +130,11 @@ class CoursewareContainer extends Component {
       sequence,
     } = this.props;
     
-    useEffect(() => {
-      const API = new APIService();
-      console.log("LOG TEST2", courseId, unitId)
-      API.visit(courseId, unitId);
-    }, [courseId, unitId]);
-
     if (sequenceStatus === 'loaded' && sequence.saveUnitPosition && unitId) {
       const activeUnitIndex = sequence.unitIds.indexOf(unitId);
+      console.log("LOG TEST3", courseId, unitId)
+      const API = new APIService();
+      API.visit(courseId, unitId);
       this.props.saveSequencePosition(courseId, sequenceId, activeUnitIndex);
     }
   });
