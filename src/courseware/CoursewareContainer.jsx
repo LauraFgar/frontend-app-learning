@@ -278,8 +278,8 @@ class CoursewareContainer extends Component {
       routeUnitId,
     } = this.props;
 
-    const API = new APIService();
-    API.visit(courseId, routeUnitId);
+    // const API = new APIService();
+    // API.visit(courseId, routeUnitId);
 
     return (
       <TabPage
