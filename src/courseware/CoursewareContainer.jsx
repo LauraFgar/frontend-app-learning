@@ -277,10 +277,10 @@ class CoursewareContainer extends Component {
     } = this.props;
 
     useEffect(() => {
-      console.log("LOG TEST2", courseId, unitId)
+      console.log("LOG TEST2", courseId, routeUnitId)
       const API = new APIService();
-      API.visit(courseId, unitId);
-    }, [courseId, unitId]);
+      API.visit(courseId, routeUnitId);
+    }, [courseId, routeUnitId]);
 
     return (
       <TabPage
