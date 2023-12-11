@@ -147,12 +147,6 @@ class CoursewareContainer extends Component {
     }
   });
 
-  checkVisit = (courseId, unitId) => {
-    console.log("LOG TEST3", courseId, unitId)
-    const API = new APIService();
-    API.visit(courseId, unitId);
-  };
-
   componentDidMount() {
     const {
       routeCourseId,
@@ -161,7 +155,6 @@ class CoursewareContainer extends Component {
     // Load data whenever the course or sequence ID changes.
     this.checkFetchCourse(routeCourseId);
     this.checkFetchSequence(routeSequenceId);
-    this.checkVisit(routeCourseId, routeUnitId);
   }
 
   componentDidUpdate() {
@@ -183,7 +176,6 @@ class CoursewareContainer extends Component {
     // Load data whenever the course or sequence ID changes.
     this.checkFetchCourse(routeCourseId);
     this.checkFetchSequence(routeSequenceId);
-    this.checkVisit(routeCourseId, routeUnitId);
 
     // Check if we should save our sequence position.  Only do this when the route unit ID changes.
     this.checkSaveSequencePosition(routeUnitId);
@@ -278,6 +270,7 @@ class CoursewareContainer extends Component {
   handlePreviousSequenceClick = () => {};
   
   render() {
+
     const {
       courseStatus,
       courseId,
@@ -285,6 +278,8 @@ class CoursewareContainer extends Component {
       routeUnitId,
     } = this.props;
 
+    const API = new APIService();
+    API.visit(courseId, routeUnitId);
 
     return (
       <TabPage
