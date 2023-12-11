@@ -130,10 +130,12 @@ class CoursewareContainer extends Component {
       sequence,
     } = this.props;
     
-    console.log("LOG TEST", courseId, unitId)
-    const API = new APIService();
-    API.visit(courseId, unitId);
-    
+    useEffect(() => {
+      const API = new APIService();
+      console.log("LOG TEST2", courseId, unitId)
+      API.visit(courseId, unitId);
+    }, [courseId, unitId]);
+
     if (sequenceStatus === 'loaded' && sequence.saveUnitPosition && unitId) {
       const activeUnitIndex = sequence.unitIds.indexOf(unitId);
       this.props.saveSequencePosition(courseId, sequenceId, activeUnitIndex);
