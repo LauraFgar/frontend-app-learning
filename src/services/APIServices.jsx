@@ -6,14 +6,11 @@ class APIService {
         const { userId } = getAuthenticatedUser();
         const URL = `/api/v1/courses/user/${userId}/course/${course_id}/block/${block_id}/visit`;
 
-        console.log('USER_ID', userId)
         try {
 
             const response = await fetch(getConfig().API_GW_URL + URL, {
                 method: 'GET'
             });
-
-            console.log('response', response);
 
             if (!response.ok) {
                 throw new Error('Network response was not success.');
