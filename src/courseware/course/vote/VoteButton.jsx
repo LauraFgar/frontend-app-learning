@@ -20,7 +20,7 @@ const VoteButton = ({
       <IconButton 
         size="sm"
         className="mr-2" 
-        iconAs={<FontAwesomeIcon icon={faHome} />} 
+        // iconAs={<FontAwesomeIcon icon={faHome} />} 
         onClick={() => handleVoteClick("like")}
         variant="primary"
         alt="I Like" 
@@ -28,7 +28,7 @@ const VoteButton = ({
       <IconButton 
         size="sm"
         className="mr-2" 
-        iconAs={<FontAwesomeIcon icon={faHome} />} 
+        // iconAs={<FontAwesomeIcon icon={faHome} />} 
         onClick={() => handleVoteClick("inlike")}
         variant="primary"
         alt="I don't Like"
