@@ -1,4 +1,4 @@
-import React, { Component, useEffect } from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { createSelector } from '@reduxjs/toolkit';
@@ -270,16 +270,12 @@ class CoursewareContainer extends Component {
   handlePreviousSequenceClick = () => {};
   
   render() {
-
     const {
       courseStatus,
       courseId,
       sequenceId,
       routeUnitId,
     } = this.props;
-
-    // const API = new APIService();
-    // API.visit(courseId, routeUnitId);
 
     return (
       <TabPage
