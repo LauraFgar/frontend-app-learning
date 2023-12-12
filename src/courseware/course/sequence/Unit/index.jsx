@@ -29,8 +29,6 @@ const Unit = ({
   const isProcessing = unit.bookmarkedUpdateState === 'loading';
   const view = authenticatedUser ? views.student : views.public;
 
-  console.log("Log VoteButton 1", courseId, unit.id)
-
   const iframeUrl = getIFrameUrl({
     id,
     view,
