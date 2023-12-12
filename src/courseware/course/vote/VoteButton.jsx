@@ -1,7 +1,7 @@
 import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
-// import { IconButton } from '@edx/paragon';
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { IconButton } from '@edx/paragon';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const VoteButton = ({
   unitId,
@@ -15,7 +15,7 @@ const VoteButton = ({
 
   return (
     <div>
-      Hola Test
+      Hola Test 2
       {/* <IconButton 
         key="ilike" 
         variant="success" 
