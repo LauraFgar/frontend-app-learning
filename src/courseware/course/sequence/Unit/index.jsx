@@ -29,7 +29,7 @@ const Unit = ({
   const isProcessing = unit.bookmarkedUpdateState === 'loading';
   const view = authenticatedUser ? views.student : views.public;
 
-  console.log("Log VoteButton 1")
+  console.log("Log VoteButton 1", courseId, unit.id)
 
   const iframeUrl = getIFrameUrl({
     id,
@@ -47,10 +47,10 @@ const Unit = ({
         isBookmarked={unit.bookmarked}
         isProcessing={isProcessing}
       />
-      {/* <VoteButton
+      <VoteButton
         courseId={courseId}
         unitId={unit.id}
-      /> */}
+      />
       <UnitSuspense {...{ courseId, id }} />
       <ContentIFrame
         elementId="unit-iframe"
