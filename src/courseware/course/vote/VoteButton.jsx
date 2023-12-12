@@ -8,6 +8,7 @@ const VoteButton = ({
   courseId
 }) => {
 
+  console.log("Log VoteButton 2")
   const handleVoteClick = useCallback(async (nameEvent) => {
     console.log('onClick', nameEvent, unitId, courseId)
   }, [unitId, courseId]);

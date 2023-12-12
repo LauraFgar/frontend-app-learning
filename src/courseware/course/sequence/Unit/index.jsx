@@ -29,6 +29,8 @@ const Unit = ({
   const isProcessing = unit.bookmarkedUpdateState === 'loading';
   const view = authenticatedUser ? views.student : views.public;
 
+  console.log("Log VoteButton 1")
+
   const iframeUrl = getIFrameUrl({
     id,
     view,
@@ -40,7 +42,7 @@ const Unit = ({
     <div className="unit">
       <h1 className="mb-0 h3">{unit.title}</h1>
       <h2 className="sr-only">{formatMessage(messages.headerPlaceholder)}</h2>
-      HOLALALALALAALAL
+       HOLALALALALAALAL
       <BookmarkButton
         unitId={unit.id}
         isBookmarked={unit.bookmarked}
@@ -50,7 +52,7 @@ const Unit = ({
         courseId={courseId}
         unitId={unit.id}
       />
-      {/* <UnitSuspense {...{ courseId, id }} />
+      <UnitSuspense {...{ courseId, id }} />
       <ContentIFrame
         elementId="unit-iframe"
         id={id}
@@ -59,7 +61,7 @@ const Unit = ({
         onLoaded={onLoaded}
         shouldShowContent={!shouldDisplayHonorCode && !examAccess.blockAccess}
         title={unit.title}
-      /> */}
+      />
     </div>
   );
 };
