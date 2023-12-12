@@ -9,17 +9,22 @@ const VoteButton = ({
   courseId
 }) => {
 
+  const API = new APIService();
   useEffect(() => {
-    console.log("Log VoteButton 333", unitId, courseId)
+    if (unitId && courseId){
+      API.visit(courseId, unitId);
+      console.log("API.visit()", unitId, courseId)
+    }
   }, [unitId, courseId]);
   
-  const handleVoteClick = useCallback((nameEvent) => {
-    console.log('onClick', nameEvent, unitId, courseId)
+  const handleVoteClick = useCallback((value) => {
+    API.vote(courseId, unitId, value);
+    console.log('API.vote()', value, unitId, courseId)
   }, [unitId, courseId]);
 
   const buttonsData = [
-    { name: 'like', icon: ThumbUpOutline, variant: 'primary', alt: 'I Like' },
-    { name: 'inlike', icon: ThumbDownOffAlt, variant: 'danger', alt: "I don't Like" }
+    { name: 'like', icon: ThumbUpOutline, variant: 'primary', alt: 'I Like', value: 1 },
+    { name: 'inlike', icon: ThumbDownOffAlt, variant: 'danger', alt: "I don't Like", value: -1 }
   ];
 
   return (
@@ -29,7 +34,7 @@ const VoteButton = ({
           key={index}
           size="sm"
           iconAs={button.icon}
-          onClick={() => handleVoteClick(button.name)}
+          onClick={() => handleVoteClick(button.value)}
           variant={button.variant}
           alt={button.alt}
         />

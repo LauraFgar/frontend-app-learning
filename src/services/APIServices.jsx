@@ -2,23 +2,43 @@ import { getConfig } from '@edx/frontend-platform';
 import { getAuthenticatedUser } from '@edx/frontend-platform/auth';
 
 class APIService {
-    visit = async (course_id, block_id) => {
-        const { userId } = getAuthenticatedUser();
-        const URL = `/api/v1/courses/user/${userId}/course/${course_id}/block/${block_id}/visit`;
+    constructor() {
+        this.userId = getAuthenticatedUser().userId;
+    }
 
+    buildURL = (course_id, block_id, endpoint) => {
+        return `/api/v1/courses/user/${this.userId}/course/${course_id}/block/${block_id}/${endpoint}`;
+    };
+
+    handleFetch = async (URL, options) => {
         try {
-
-            const response = await fetch(getConfig().API_GW_URL + URL, {
-                method: 'GET'
-            });
+            const response = await fetch(getConfig().API_GW_URL + URL, options);
 
             if (!response.ok) {
-                throw new Error('Network response was not success.');
+                throw new Error(`Error ${response.status}: ${response.statusText}`);
             }
 
         } catch (error) {
             console.error('Hubo un problema con la operación de fetch:', error);
         }
+    };
+
+    visit = async (course_id, block_id) => {
+        const URL = this.buildURL(course_id, block_id, 'visit');
+
+        await this.handleFetch(URL, {
+            method: 'GET'
+        });
+    };
+
+    vote = async (course_id, block_id, value) => {
+        const URL = this.buildURL(course_id, block_id, 'vote');
+
+        await this.handleFetch(URL, {
+            method: 'POST',
+            body: JSON.stringify({ value }),
+            headers: { 'Content-Type': 'application/json' }
+        });
     };
 }
 export default APIService;
