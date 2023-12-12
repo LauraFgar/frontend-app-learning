@@ -47,10 +47,10 @@ const Unit = ({
         isBookmarked={unit.bookmarked}
         isProcessing={isProcessing}
       />
-      <VoteButton
+      {/* <VoteButton
         courseId={courseId}
         unitId={unit.id}
-      />
+      /> */}
       <UnitSuspense {...{ courseId, id }} />
       <ContentIFrame
         elementId="unit-iframe"
