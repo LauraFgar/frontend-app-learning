@@ -9,14 +9,14 @@ const VoteButton = ({
 }) => {
 
   console.log("Log VoteButton 2")
-  const handleVoteClick = useCallback(async (nameEvent) => {
+  
+  const handleVoteClick = useCallback((nameEvent) => {
     console.log('onClick', nameEvent, unitId, courseId)
   }, [unitId, courseId]);
 
   return (
     <div>
-      Hola Test 2
-      {/* <IconButton 
+      <IconButton 
         key="ilike" 
         variant="success" 
         alt="Like" 
@@ -31,7 +31,7 @@ const VoteButton = ({
         iconAs={<FontAwesomeIcon icon="fa-solid fa-thumbs-down" />} 
         onClick={() => handleVoteClick("inlike")}
         className="mr-2" 
-      /> */}
+      />
     </div>
   );
 };
