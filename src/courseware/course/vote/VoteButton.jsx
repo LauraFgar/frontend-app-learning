@@ -1,6 +1,6 @@
 import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
-import { IconButton } from '@edx/paragon';
+import { Icon, IconButton } from '@edx/paragon';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const VoteButton = ({
@@ -17,20 +17,20 @@ const VoteButton = ({
   return (
     <div>
       <IconButton 
-        key="ilike" 
-        variant="success" 
-        alt="Like" 
-        iconAs={<FontAwesomeIcon icon="fa-solid fa-thumbs-up" />} 
-        onClick={() => handleVoteClick("like")}
+        size="sm"
         className="mr-2" 
+        iconAs={Icon}
+        onClick={() => handleVoteClick("like")}
+        variant="primary"
+        alt="I Like" 
       />
       <IconButton 
-        key="inlike" 
-        variant="danger" 
-        alt="Like" 
-        iconAs={<FontAwesomeIcon icon="fa-solid fa-thumbs-down" />} 
-        onClick={() => handleVoteClick("inlike")}
+        size="sm"
         className="mr-2" 
+        iconAs={Icon}
+        onClick={() => handleVoteClick("inlike")}
+        variant="primary"
+        alt="I don't Like"
       />
     </div>
   );
