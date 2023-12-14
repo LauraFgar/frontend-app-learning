@@ -38,10 +38,9 @@ class APIService {
             method: 'POST',
             body: JSON.stringify({ value }),
             mode: 'cors',
-            // headers: { 
-            //     'Content-Type': 'application/json',
-            //     // 'Access-Control-Allow-Credentials': true
-            // }
+            headers: { 
+                'Content-Type': 'application/json'
+            }
         });
     };
 }
