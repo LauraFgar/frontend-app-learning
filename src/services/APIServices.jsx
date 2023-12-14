@@ -37,7 +37,11 @@ class APIService {
         await this.handleFetch(URL, {
             method: 'POST',
             body: JSON.stringify({ value }),
-            headers: { 'Content-Type': 'application/json' }
+            mode: 'cors',
+            // headers: { 
+            //     'Content-Type': 'application/json',
+            //     // 'Access-Control-Allow-Credentials': true
+            // }
         });
     };
 }
