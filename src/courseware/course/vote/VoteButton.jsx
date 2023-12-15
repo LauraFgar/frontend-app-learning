@@ -10,16 +10,15 @@ const VoteButton = ({
 }) => {
 
   const API = new APIService();
+  
   useEffect(() => {
     if (unitId && courseId){
       API.visit(courseId, unitId);
-      console.log("API.visit()", unitId, courseId)
     }
   }, [unitId, courseId]);
   
   const handleVoteClick = useCallback((value) => {
     API.vote(courseId, unitId, value);
-    console.log('API.vote()', value, unitId, courseId)
   }, [unitId, courseId]);
 
   const buttonsData = [
