@@ -266,6 +266,7 @@ class CoursewareContainer extends Component {
   };
 
   handlePreviousSequenceClick = () => {};
+
   render() {
     const {
       courseStatus,
@@ -273,6 +274,7 @@ class CoursewareContainer extends Component {
       sequenceId,
       routeUnitId,
     } = this.props;
+
     return (
       <TabPage
         activeTabSlug="courseware"
@@ -432,6 +434,7 @@ const mapStateToProps = (state) => {
     sequenceStatus,
     sequenceMightBeUnit,
   } = state.courseware;
+
   return {
     courseId,
     sequenceId,
