@@ -13,6 +13,7 @@ import {
   saveSequencePosition,
 } from './data';
 import { TabPage } from '../tab-page';
+
 import Course from './course';
 import { handleNextSectionCelebration } from './course/celebration';
 import withParamsAndNavigation from './utils';
@@ -121,7 +122,6 @@ const checkSequenceUnitMarkerToSequenceUnitRedirect = memoize(
 );
 
 class CoursewareContainer extends Component {
-
   checkSaveSequencePosition = memoize((unitId) => {
     const {
       courseId,
@@ -129,7 +129,6 @@ class CoursewareContainer extends Component {
       sequenceStatus,
       sequence,
     } = this.props;
-
     if (sequenceStatus === 'loaded' && sequence.saveUnitPosition && unitId) {
       const activeUnitIndex = sequence.unitIds.indexOf(unitId);
       this.props.saveSequencePosition(courseId, sequenceId, activeUnitIndex);
@@ -267,7 +266,6 @@ class CoursewareContainer extends Component {
   };
 
   handlePreviousSequenceClick = () => {};
-  
   render() {
     const {
       courseStatus,
@@ -275,7 +273,6 @@ class CoursewareContainer extends Component {
       sequenceId,
       routeUnitId,
     } = this.props;
-
     return (
       <TabPage
         activeTabSlug="courseware"
