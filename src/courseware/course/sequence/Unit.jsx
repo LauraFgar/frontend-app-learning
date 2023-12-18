@@ -7,6 +7,7 @@ import React, {
   Suspense, useCallback, useContext, useEffect, useLayoutEffect, useState,
 } from 'react';
 import { useDispatch } from 'react-redux';
+import VoteButton from '../../vote/VoteButton';
 import { processEvent } from '../../../course-home/data/thunks';
 /** [MM-P2P] Experiment */
 import { MMP2PLockPaywall } from '../../../experiments/mm-p2p';
@@ -163,6 +164,10 @@ function Unit({
         unitId={unit.id}
         isBookmarked={unit.bookmarked}
         isProcessing={unit.bookmarkedUpdateState === 'loading'}
+      />
+      <VoteButton
+        courseId={courseId}
+        unitId={unit.id}
       />
       { !mmp2p.state.isEnabled && contentTypeGatingEnabled && unit.containsContentTypeGatedContent && (
         <Suspense
