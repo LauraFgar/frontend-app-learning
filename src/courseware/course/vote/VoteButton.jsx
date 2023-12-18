@@ -2,7 +2,7 @@ import React, { useCallback, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { IconButton } from '@edx/paragon';
 import { ThumbUpOutline, ThumbDownOffAlt } from '@edx/paragon/icons';
-import APIService from '../../services/APIServices'
+import APIService from '../services/APIServices';
 
 const VoteButton = ({
   unitId,
