@@ -7,7 +7,6 @@ import React, {
   Suspense, useCallback, useContext, useEffect, useLayoutEffect, useState,
 } from 'react';
 import { useDispatch } from 'react-redux';
-import VoteButton from '../../vote/VoteButton';
 import { processEvent } from '../../../course-home/data/thunks';
 /** [MM-P2P] Experiment */
 import { MMP2PLockPaywall } from '../../../experiments/mm-p2p';
@@ -16,6 +15,7 @@ import { useModel } from '../../../generic/model-store';
 import PageLoading from '../../../generic/PageLoading';
 import { fetchCourse } from '../../data';
 import BookmarkButton from '../bookmark/BookmarkButton';
+import VoteButton from '../vote/VoteButton';
 import messages from './messages';
 
 const HonorCode = React.lazy(() => import('./honor-code'));
